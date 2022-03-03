@@ -14,3 +14,19 @@ const searchBtn = () =>{
         .then(data => displayResult(data));
     inputBox.value='';
 }
+const displayResult= (result) =>{
+    if(result.cod === 200){
+        resultArea.classList.remove('d-none');
+        console.log(result);
+        cityName.innerText=`${result.name}`;
+        temperature.innerText=`${result.main.temp}`;
+        const iconUrl = `http://openweathermap.org/img/wn/${result.weather[0].icon}@2x.png`;
+        console.log(iconUrl);
+        weatherIcon.setAttribute('src',iconUrl);
+        weatherCondition.innerText=`${result.weather[0].description}`
+    } else{
+        errorMessage.innerText='No city Found !';
+        resultArea.classList.add('d-none');
+    }
+    
+}
